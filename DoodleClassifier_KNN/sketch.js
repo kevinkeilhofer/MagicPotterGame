@@ -144,25 +144,7 @@ function clearClass(classIndex) {
   updateExampleCounts();
 }
 
-// Save the Model -->
-// async function saveModel() {
-//   await model.save('downloads://my-model');
-// }
-
-// function saveModel() {
-//   let dataset = this.classifier.getClassifierDataset()
-//   var datasetObj = {}
-//   Object.keys(dataset).forEach((key) => {
-//     let data = dataset[key].dataSync();
-//     // use Array.from() so when JSON.stringify() it covert to an array string e.g [0.1,-0.2...] 
-//     // instead of object e.g {0:"0.1", 1:"-0.2"...}
-//     datasetObj[key] = Array.from(data); 
-//   });
-//   let jsonStr = JSON.stringify(datasetObj)
-//   //can be change to other source
-//   localStorage.setItem("myData", jsonStr);
-// }
-
+// Save the Model
 myDefineClassifierModel = async function(myPassedClassifier){
   let myLayerList = []
    myLayerList[0] = []    // for the input layer name as a string
