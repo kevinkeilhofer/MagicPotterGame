@@ -9,9 +9,6 @@ async function loadMyModel() {
   //model = await tf.loadLayersModel('model/my-model.json');
   model = await tf.loadLayersModel('model/model.json');
   model.summary();
-
-  //await model.save('downloads://my-model');
-
 }
 
 function setup() {
