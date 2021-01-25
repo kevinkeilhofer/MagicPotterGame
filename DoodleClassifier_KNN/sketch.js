@@ -141,7 +141,7 @@ function clearClass(classIndex) {
   updateExampleCounts();
 }
 
-// Save the Model
+//vorbereitung für speicher funktion
 myDefineknnclassifierModel = async function(myPassedknnclassifier){
   let myLayerList = []
    myLayerList[0] = []    // for the input layer name as a string
@@ -153,18 +153,18 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
   //console.log('myPassedClassifier.getNumClasses()')
   //console.log(myMaxClasses)                                                                                      
                                                                                            
-  for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){      // need number of classifiers                                        
+  for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){      // need number of classifiers  //nimmt die anzahl der classifier                                      
                                                                                        
     //console.log(myPassedClassifier.getClassifierDataset()[myClassifierLoop])                                                                                                                                                           
     //console.log('shape first layer =')                                                                                                                                                           
     //console.log(myPassedClassifier.getClassifierDataset()[myClassifierLoop].shape[0])
                                                                                            
-    myLayerList[0][myknnclassifierLoop] = 'myInput'  + myknnclassifierLoop                  // input name as a string
+    myLayerList[0][myknnclassifierLoop] = 'myInput'  + myknnclassifierLoop                  // input name as a string // input name als string
     console.log('define input for'+myknnclassifierLoop)                                                                                       
-    myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer
+    myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer  //definiert die input layor
     console.log('define dense for: '+myknnclassifierLoop)
-    myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string                                                                                  
-    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer                                                                          
+    myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string //verketten als string                                                                                 
+    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer //Verkettungsebene definieren                                                                         
                                                                                          
   }
                                                                                            
@@ -172,27 +172,28 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
  //const myInput2 = tf.input({shape: [1], name: 'myInput2'});
  //const myInput2Dense1 = tf.layers.dense({units: 20, name: 'myInput2Dense1'}).apply(myInput2);
                                                                                            
- console.log('Concatenate Paths')                                                                                                                                                                                          
- const myConcatenate1 = tf.layers.concatenate({axis : 1, name: 'myConcatenate1'}).apply(myLayerList[3]);    // send the entire list of dense                                                                                           
+ console.log('Concatenate Paths') //gibt in console aus                                                                                                                                                                                         
+ const myConcatenate1 = tf.layers.concatenate({axis : 1, name: 'myConcatenate1'}).apply(myLayerList[3]);    // send the entire list of dense //sendet gesamte liste mit inhalt                                                                                          
  const myConcatenate1Dense4 = tf.layers.dense({units: 1, name: 'myConcatenate1Dense4'}).apply(myConcatenate1)                                                                                              
 
- console.log('Define Model')                                                                                                                                                                                       
- const myknnclassifierModel = tf.model({inputs: myLayerList[1], outputs: myConcatenate1Dense4});    // This would be a global model. With list of inputs as an array                                                                                                                                                                                         
+ console.log('Define Model') //gibt in console aus                                                                                                                                                                                       
+ const myknnclassifierModel = tf.model({inputs: myLayerList[1], outputs: myConcatenate1Dense4});    // This would be a global model. With list of inputs as an array //das ist ein globales Modell. Mit der Liste der Eingänge als Array                                                                                                                                                                                        
  myknnclassifierModel.summary()
  console.log('myknnclassifierModel.layers[myMaxClasses]')     
  console.log(myknnclassifierModel.layers[myMaxClasses])
  myPassedknnclassifier.getClassifierDataset()[0].print(true)                                                                                            
                                                                                            
- for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){   // since the first layers are inputs must add maxClasses   
+ for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){   // since the first layers are inputs must add maxClasses //erste Schichten sind Eingänge, muss maxClasses hinzufügen, das maximale der klassen
    const myInWeight = await myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop]                                                                                        
    myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]);                                                                                        
 }                                                                                           
                                                                                            
-return  myknnclassifierModel                                                                                        
+return  myknnclassifierModel //rückgabe                                                                                       
 }    
 
+//speicher funktion
 myknnclassifierSave  = async function(){                                                                                                                                                                  
-  const myknnclassifierModel2 = await myDefineknnclassifierModel(knnclassifier)         // pass global classifier                                                                                                                                                                                                                                                                      
+  const myknnclassifierModel2 = await myDefineknnclassifierModel(knnclassifier)         // pass global classifier //globalen Klassifikator passieren                                                                                                                                                                                                                                                                  
   myknnclassifierModel2.save('downloads://myknnclassifierModel01')  
   myknnclassifierModel2.summary(null,null,x => {document.getElementById('myDivSummary').innerHTML += x + '<br>'});                                                                                                                                                                                                                                                                             
 }
