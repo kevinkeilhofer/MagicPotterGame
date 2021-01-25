@@ -28,7 +28,7 @@ function setup() {
   clearButton.mousePressed(clearCanvas);
 
   let saveButton = select ('#save');
-  saveButton.mousePressed(myClassifierSave);
+  saveButton.mousePressed(myknnclassifierSave);
 
   let addAButton = select('#addA');
   addAButton.mousePressed(() => addClass(0));
@@ -142,29 +142,29 @@ function clearClass(classIndex) {
 }
 
 // Save the Model
-myDefineClassifierModel = async function(myPassedClassifier){
+myDefineknnclassifierModel = async function(myPassedknnclassifier){
   let myLayerList = []
    myLayerList[0] = []    // for the input layer name as a string
    myLayerList[1] = []    // for the input layer
    myLayerList[2] = []    // for the concatenate layer name as a string
    myLayerList[3] = []    // for the concatenate layer
                                                                                                                                                                                       
-  let myMaxClasses =    myPassedClassifier.getNumClasses()                                                                                      
+  let myMaxClasses =    myPassedknnclassifier.getNumClasses()                                                                                      
   //console.log('myPassedClassifier.getNumClasses()')
   //console.log(myMaxClasses)                                                                                      
                                                                                            
-  for (let myClassifierLoop = 0; myClassifierLoop < myMaxClasses; myClassifierLoop++ ){      // need number of classifiers                                        
+  for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){      // need number of classifiers                                        
                                                                                        
     //console.log(myPassedClassifier.getClassifierDataset()[myClassifierLoop])                                                                                                                                                           
     //console.log('shape first layer =')                                                                                                                                                           
     //console.log(myPassedClassifier.getClassifierDataset()[myClassifierLoop].shape[0])
                                                                                            
-    myLayerList[0][myClassifierLoop] = 'myInput'  + myClassifierLoop                  // input name as a string
-    console.log('define input for'+myClassifierLoop)                                                                                       
-    myLayerList[1][myClassifierLoop] = tf.input({shape: myPassedClassifier.getClassifierDataset()[myClassifierLoop].shape[0], name: myLayerList[1][myClassifierLoop]});      // Define input layer
-    console.log('define dense for: '+myClassifierLoop)
-    myLayerList[2][myClassifierLoop] = 'myInput'+myClassifierLoop+'Dense1'    // concatenate as a string                                                                                  
-    myLayerList[3][myClassifierLoop] = tf.layers.dense({units: 136, name: myGroups[myClassifierLoop]}).apply(myLayerList[1][myClassifierLoop]);             //Define concatenate layer                                                                          
+    myLayerList[0][myknnclassifierLoop] = 'myInput'  + myknnclassifierLoop                  // input name as a string
+    console.log('define input for'+myknnclassifierLoop)                                                                                       
+    myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getknnclassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer
+    console.log('define dense for: '+myknnclassifierLoop)
+    myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string                                                                                  
+    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: myGroups[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer                                                                          
                                                                                          
   }
                                                                                            
@@ -177,22 +177,22 @@ myDefineClassifierModel = async function(myPassedClassifier){
  const myConcatenate1Dense4 = tf.layers.dense({units: 1, name: 'myConcatenate1Dense4'}).apply(myConcatenate1)                                                                                              
 
  console.log('Define Model')                                                                                                                                                                                       
- const myClassifierModel = tf.model({inputs: myLayerList[1], outputs: myConcatenate1Dense4});    // This would be a global model. With list of inputs as an array                                                                                                                                                                                         
- myClassifierModel.summary()
- console.log('myClassifierModel.layers[myMaxClasses]')     
- console.log(myClassifierModel.layers[myMaxClasses])
- myPassedClassifier.getClassifierDataset()[0].print(true)                                                                                            
+ const myknnclassifierModel = tf.model({inputs: myLayerList[1], outputs: myConcatenate1Dense4});    // This would be a global model. With list of inputs as an array                                                                                                                                                                                         
+ myknnclassifierModel.summary()
+ console.log('myknnclassifierModel.layers[myMaxClasses]')     
+ console.log(myknnclassifierModel.layers[myMaxClasses])
+ myPassedknnclassifier.getknnclassifierDataset()[0].print(true)                                                                                            
                                                                                            
- for (let myClassifierLoop = 0; myClassifierLoop < myMaxClasses; myClassifierLoop++ ){   // since the first layers are inputs must add maxClasses   
-   const myInWeight = await myPassedClassifier.getClassifierDataset()[myClassifierLoop]                                                                                        
-   myClassifierModel.layers[myClassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]);                                                                                        
+ for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){   // since the first layers are inputs must add maxClasses   
+   const myInWeight = await myPassedknnclassifier.getknnclassifierDataset()[myknnclassifierLoop]                                                                                        
+   myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]);                                                                                        
 }                                                                                           
                                                                                            
-return  myClassifierModel                                                                                        
+return  myknnclassifierModel                                                                                        
 }    
 
-myClassifierSave  = async function(){                                                                                                                                                                  
-  const myClassifierModel2 = await myDefineClassifierModel(classifier)         // pass global classifier                                                                                                                                                                                                                                                                      
-  myClassifierModel2.save('downloads://myClassifierModel01')  
-  myClassifierModel2.summary(null,null,x => {document.getElementById('myDivSummary').innerHTML += x + '<br>'});                                                                                                                                                                                                                                                                             
+myknnclassifierSave  = async function(){                                                                                                                                                                  
+  const myknnclassifierModel2 = await myDefineknnclassifierModel(knnclassifier)         // pass global classifier                                                                                                                                                                                                                                                                      
+  myknnclassifierModel2.save('downloads://myknnclassifierModel01')  
+  myknnclassifierModel2.summary(null,null,x => {document.getElementById('myDivSummary').innerHTML += x + '<br>'});                                                                                                                                                                                                                                                                             
 }
