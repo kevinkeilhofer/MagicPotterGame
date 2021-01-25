@@ -3,7 +3,7 @@ const CLASSES = ['flashlight', 'belt', 'mushroom', 'pond', 'strawberry', 'pineap
 let model;
 let cnv;
 let knnclassifier;
-const CLASS_NAMES = ['Alohomora', 'Wingardium Leviosa', 'Flipendo', 'Accio'];
+const CLASS_NAMES = ['Alohomora', 'WingardiumLeviosa', 'Flipendo', 'Accio'];
 
 async function loadMyModel() {
   //model = await tf.loadLayersModel('model/my-model.json');
@@ -161,10 +161,10 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
                                                                                            
     myLayerList[0][myknnclassifierLoop] = 'myInput'  + myknnclassifierLoop                  // input name as a string
     console.log('define input for'+myknnclassifierLoop)                                                                                       
-    myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getknnclassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer
+    myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer
     console.log('define dense for: '+myknnclassifierLoop)
     myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string                                                                                  
-    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: myGroups[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer                                                                          
+    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer                                                                          
                                                                                          
   }
                                                                                            
@@ -181,10 +181,10 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
  myknnclassifierModel.summary()
  console.log('myknnclassifierModel.layers[myMaxClasses]')     
  console.log(myknnclassifierModel.layers[myMaxClasses])
- myPassedknnclassifier.getknnclassifierDataset()[0].print(true)                                                                                            
+ myPassedknnclassifier.getClassifierDataset()[0].print(true)                                                                                            
                                                                                            
  for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){   // since the first layers are inputs must add maxClasses   
-   const myInWeight = await myPassedknnclassifier.getknnclassifierDataset()[myknnclassifierLoop]                                                                                        
+   const myInWeight = await myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop]                                                                                        
    myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]);                                                                                        
 }                                                                                           
                                                                                            
