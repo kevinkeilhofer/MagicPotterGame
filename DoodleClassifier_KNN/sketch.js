@@ -164,7 +164,7 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
     myLayerList[1][myknnclassifierLoop] = tf.input({shape: myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop].shape[0], name: myLayerList[1][myknnclassifierLoop]});      // Define input layer  //definiert die input layor
     console.log('define dense for: '+myknnclassifierLoop)
     myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string //verketten als string                                                                                 
-    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer //Verkettungsebene definieren                                                                         
+    myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 784, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer //Verkettungsebene definieren //myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);                                                                        
                                                                                          
   }
                                                                                            
@@ -185,7 +185,7 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
                                                                                            
  for (let myknnclassifierLoop = 0; myknnclassifierLoop < myMaxClasses; myknnclassifierLoop++ ){   // since the first layers are inputs must add maxClasses //erste Schichten sind Eingänge, muss maxClasses hinzufügen, das maximale der klassen
    const myInWeight = await myPassedknnclassifier.getClassifierDataset()[myknnclassifierLoop]                                                                                        
-   myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]);                                                                                        
+   myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([784])]);       //model.layers[0].setWeights([tf.ones([10, 2]), tf.ones([2])]); //myknnclassifierModel.layers[myknnclassifierLoop + myMaxClasses].setWeights([myInWeight, tf.ones([136])]);                                                                                        
 }                                                                                           
                                                                                            
 return  myknnclassifierModel //rückgabe                                                                                       
