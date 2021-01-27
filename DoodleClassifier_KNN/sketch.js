@@ -199,7 +199,7 @@ myknnclassifierSave  = async function(){
   myknnclassifierModel2.summary(null,null,x => {document.getElementById('myDivSummary').innerHTML += x + '<br>'});                                                                                                                                                                                                                                                                             
 }
 
-//mySetClassiferModelWeights  = async function(){
+mySetClassiferModelWeights  = async function(){
                                                                                              
                                                                                              
 }                                                                                              
