@@ -5,18 +5,54 @@ let cnv;
 let knnclassifier;
 const CLASS_NAMES = ['Alohomora', 'WingardiumLeviosa', 'Flipendo', 'Accio'];
 
-async function loadMyModel() {
-  //model = await tf.loadLayersModel('model/my-model.json');
-  //model = await tf.loadLayersModel('model/model.json');
-  model = await tf.loadLayersModel('model/myknnclassifierModel01.json');
-  model.summary();
-}
+//load function
+myClassifierLoad  = async function(){
+  // note global variable called        myIncomingClassifier        
+                                                                                            
+  const myLoadedModel  = await	tf.loadModel(document.getElementById('myknnclassifierModel01.json').value)                                                                                          
+  console.log('myLoadedModel.layers.length')   
+  console.log(myLoadedModel.layers.length) 
+                                          
+                                          
+ // console.log('myLoadedModel.layers[0].batchInputShape[1]')   
+ // console.log(myLoadedModel.layers[0].batchInputShape[1] )       
+                                                                                  
+ const myMaxLayers = myLoadedModel.layers.length
+ const myDenseEnd =  myMaxLayers - 2                                                                                          
+ const myDenseStart = myDenseEnd/2         // assume 0 = first layer: if 6 layers 0-1 input, 2-3 dense, 4 concatenate, 5 dense output                                                                                  
+                                                                                           
+  for (let myWeightLoop = myDenseStart; myWeightLoop < myDenseEnd; myWeightLoop++ ){      // need number of classifiers                                        
+                                             
+     // console.log('myLoadedModel.layers['+myWeightLoop+']')   
+     // console.log(myLoadedModel.layers[myWeightLoop])          
+     console.log('myLoadedModel.layers['+myWeightLoop+'].getWeights()[0].print(true)') 
+    // myLoadedModel.layers[myWeightLoop].getWeights()[0].print(true)                                                                                        
+     myIncomingClassifier[myWeightLoop - myDenseStart] =  myLoadedModel.layers[myWeightLoop].getWeights()[0] 
+     myGroups[myWeightLoop - myDenseStart] =  myLoadedModel.layers[myWeightLoop].name     // hopefully the name is the group name                                                                                     
+  }
+ console.log('Printing all the incoming classifiers')
+ for (x=0;  x < myIncomingClassifier.length ; x++){
+   myIncomingClassifier[x].print(true)                                                                                          
+ }                                                                                           
+ console.log('Activating Classifier')   
+ 
+ classifier.dispose() // clear old classifier 
+ classifier.setClassifierDataset(myIncomingClassifier)  
+ console.log('Classifier loaded')                                                                                                                                                                                  
+}                                                                                             
+
+// async function loadMyModel() {
+//   //model = await tf.loadLayersModel('model/my-model.json');
+//   //model = await tf.loadLayersModel('model/model.json');
+//   model = await tf.loadLayersModel('model/myknnclassifierModel01.json');
+//   model.summary();
+// }
 
 function setup() {
   // Create the classifier.
   knnclassifier = knnClassifier.create();
 
-  loadMyModel();
+  //loadMyModel();
 
   cnv = createCanvas(280, 280);
   background(255);
@@ -166,8 +202,7 @@ myDefineknnclassifierModel = async function(myPassedknnclassifier){
     console.log('define dense for: '+myknnclassifierLoop)
     myLayerList[2][myknnclassifierLoop] = 'myInput'+myknnclassifierLoop+'Dense1'    // concatenate as a string //verketten als string                                                                                 
     myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 784, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);             //Define concatenate layer //Verkettungsebene definieren //myLayerList[3][myknnclassifierLoop] = tf.layers.dense({units: 136, name: CLASS_NAMES[myknnclassifierLoop]}).apply(myLayerList[1][myknnclassifierLoop]);                                                                        
-                                                                                         
-  }
+    }
                                                                                            
  // what the layers used to look like before the loop                                                                                            
  //const myInput2 = tf.input({shape: [1], name: 'myInput2'});
@@ -200,45 +235,4 @@ myknnclassifierSave  = async function(){
 }
 
 mySetClassiferModelWeights  = async function(){
-                                                                                             
-                                                                                             
-}                                                                                              
-  
-                                                                                                
-//load function                                                                                            
-//////////////////////////////////////////////////////////////////////////////
-myClassifierLoad  = async function(){
-   // note global variable called        myIncomingClassifier        
-                                                                                             
-   const myLoadedModel  = await	tf.loadModel(document.getElementById('myInFile').value)                                                                                          
-   console.log('myLoadedModel.layers.length')   
-   console.log(myLoadedModel.layers.length) 
-                                           
-                                           
-  // console.log('myLoadedModel.layers[0].batchInputShape[1]')   
-  // console.log(myLoadedModel.layers[0].batchInputShape[1] )       
-                                                                                   
-  const myMaxLayers = myLoadedModel.layers.length
-  const myDenseEnd =  myMaxLayers - 2                                                                                          
-  const myDenseStart = myDenseEnd/2         // assume 0 = first layer: if 6 layers 0-1 input, 2-3 dense, 4 concatenate, 5 dense output                                                                                  
-                                                                                            
-   for (let myWeightLoop = myDenseStart; myWeightLoop < myDenseEnd; myWeightLoop++ ){      // need number of classifiers                                        
-                                              
-      // console.log('myLoadedModel.layers['+myWeightLoop+']')   
-      // console.log(myLoadedModel.layers[myWeightLoop])          
-      console.log('myLoadedModel.layers['+myWeightLoop+'].getWeights()[0].print(true)') 
-     // myLoadedModel.layers[myWeightLoop].getWeights()[0].print(true)                                                                                        
-      myIncomingClassifier[myWeightLoop - myDenseStart] =  myLoadedModel.layers[myWeightLoop].getWeights()[0] 
-      myGroups[myWeightLoop - myDenseStart] =  myLoadedModel.layers[myWeightLoop].name     // hopefully the name is the group name                                                                                     
-   }
-  console.log('Printing all the incoming classifiers')
-  for (x=0;  x < myIncomingClassifier.length ; x++){
-    myIncomingClassifier[x].print(true)                                                                                          
-  }                                                                                           
-  console.log('Activating Classifier')   
-  
-  classifier.dispose() // clear old classifier 
-  classifier.setClassifierDataset(myIncomingClassifier)  
-  console.log('Classifier loaded')                                                                                              
-                                                                                             
-}                                                                                             
+}
