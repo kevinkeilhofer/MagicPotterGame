@@ -23,14 +23,22 @@ Verwendete [Pixi.js](https://www.pixijs.com).
   
 
 **Machine Learning**
-* **server/index.jsKNN Doodle Classifier:** 
+* **KNN Doodle Classifier:**
+ * **index.html:**
  * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
+ * Verknüpfen mit Tensorflow JS
+ * eigenen Doodle-Klassen anpassen können
+ * **sketch.js:**
+ * Variablen definieren
+ * function setup()
+ * function addClass(classIndex)
+ * async function guess()
+ * function getInputImage()
+ * function draw()
+ * function clearCanvas()
+ * function updateExampleCounts()
+ * function clearClass(classIndex)
 
-- Verknüpfen mit Tensorflow JS
-
-- Frontend
-
-- eigenen Doodle-Klassen anpassen können
 
   * Zudem wird in dieser Datei der Arduino über den **Serialport** angesprochen um den LEDStrip zum leuchten zu bringen
    
