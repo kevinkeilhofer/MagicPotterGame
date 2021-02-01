@@ -25,20 +25,27 @@ Verwendete [Pixi.js](https://www.pixijs.com).
 **Machine Learning**
 * **KNN Doodle Classifier:**
   * **index.html:**
-   * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
-   * Verknüpfen mit Tensorflow JS
-   * eigenen Doodle-Klassen anpassen können
+  * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
+  * Verknüpfen mit Tensorflow JS
+  * eigenen Doodle-Klassen anpassen können
   * **sketch.js:**
-   * Variablen definieren
-   * function setup()
-   * function addClass(classIndex)
-   * async function guess()
-   * function getInputImage()
-   * function draw()
-   * function clearCanvas()
-   * function updateExampleCounts()
-   * function clearClass(classIndex)
-
+  * Variablen definieren
+  * function setup()
+  * function addClass(classIndex)
+  * async function guess()
+  * function getInputImage()
+  * function draw()
+  * function clearCanvas()
+  * function updateExampleCounts()
+  * function clearClass(classIndex)
+  * Doodle-Klassen speichern und herunterladen
+  * trainierte Klassen laden ins Dokument
+  
+* **Zauberstabtracking**
+  * Einbindung von JavaScript Library: tracking.js → dient zur Farb- und Objekterkennung
+  * Das Tracking von Farben erfolgt anhand ihres RGB-Wertes, der vom Nutzer selbst festgelegt werden muss
+  * Durch das Bewegen erstellt man einen Trail, bewegt man sich lange nicht ist das zeichnen beendet. Der Trail wird eingefügt in den Frame von dem KNN Doodle Classifier, dadurch kann der KNN Doodle Classifier klassifizieren was gezeichnet wurde.
+  * Trailpunkte angepasst an Zauberbewegungslänge
 
   * Zudem wird in dieser Datei der Arduino über den **Serialport** angesprochen um den LEDStrip zum leuchten zu bringen
    
