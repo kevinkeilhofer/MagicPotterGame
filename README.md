@@ -2,8 +2,7 @@
 
 MagicPotterGame ist ein spiel welches ...
 
-(Video Einbindung)
-
+![](KNN_Doodle_Classifier_trainandsave.mp4)
 
 ## Aufbau
 
