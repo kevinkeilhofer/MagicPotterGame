@@ -23,7 +23,7 @@ Verwendete [Pixi.js](https://www.pixijs.com).
   
 
 **Machine Learning**
-* **KNN Doodle Classifier:**
+* **KNN Doodle Classifier**
 * **index.html:**
   * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
   * Verknüpfen mit Tensorflow JS
