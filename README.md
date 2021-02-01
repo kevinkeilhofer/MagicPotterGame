@@ -1,6 +1,9 @@
 # MagicPotterGame
 
 MagicPotterGame ist ein spiel welches ...
+Verwendete Quelle war die API Dokumentation von [OpenWeatherMap](https://openweathermap.org/current).
+
+![Headline Picture](screenshot1.png)
 
 [![](http://img.youtube.com/vi/ya_6I9IVMzY/0.jpg)](http://www.youtube.com/watch?v=ya_6I9IVMzY "")
 
