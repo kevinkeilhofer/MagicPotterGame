@@ -47,13 +47,6 @@ Verwendete [Pixi.js](https://www.pixijs.com).
  * Durch das Bewegen erstellt man einen Trail, bewegt man sich lange nicht ist das zeichnen beendet. Der Trail wird eingefügt in den Frame von dem KNN Doodle Classifier, dadurch kann der KNN Doodle Classifier klassifizieren was gezeichnet wurde.
   * Trailpunkte angepasst an Zauberbewegungslänge
 
-  * Zudem wird in dieser Datei der Arduino über den **Serialport** angesprochen um den LEDStrip zum leuchten zu bringen
-   
-* **server/routes/index.js:** empfängt Parameter - Längen- und Breitengrade - über die socket.io-Client- und Serververbindung
-  * `getWeather( latitude, longitude, socket )`: Parameter werden zusammen mit einem Socket-Objekt übergeben. Die Funktion ruft eine importierte Wetterfunktion auf, die **openweathermap** api abfragt. Die zurückgegebenen Ergebnisse werden zusammen mit Wetterinformationen im Json-Format an das Wetterereignis ausgegeben      
-    
-* **server/routes/weather.js:** Greift auf die Wetterdaten von openweather zurück und schickt sie zurück zu weather   
-
 
 ## ToDos
 * Gaming Frontend: Objekt- und Kollisionserkennung, Einbindung und Ausrichtund der richtigen Sprites und Sheets
