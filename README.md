@@ -45,7 +45,7 @@ Verwendete [Pixi.js](https://www.pixijs.com).
  * Einbindung von JavaScript Library: tracking.js → dient zur Farb- und Objekterkennung
  * Das Tracking von Farben erfolgt anhand ihres RGB-Wertes, der vom Nutzer selbst festgelegt werden muss
  * Durch das Bewegen erstellt man einen Trail, bewegt man sich lange nicht ist das zeichnen beendet. Der Trail wird eingefügt in den Frame von dem KNN Doodle Classifier, dadurch kann der KNN Doodle Classifier klassifizieren was gezeichnet wurde.
-  * Trailpunkte angepasst an Zauberbewegungslänge
+ * Trailpunkte angepasst an Zauberbewegungslänge
 
 
 ## ToDos
