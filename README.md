@@ -23,7 +23,15 @@ Verwendete [Pixi.js](https://www.pixijs.com).
   
 
 **Machine Learning**
-* **server/index.js:** importiert **socket.io** und gibt es weiter an **routes/index.js:** zum Verbraucher
+* **server/index.jsKNN Doodle Classifier:** 
+ * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
+
+- Verknüpfen mit Tensorflow JS
+
+- Frontend
+
+- eigenen Doodle-Klassen anpassen können
+
   * Zudem wird in dieser Datei der Arduino über den **Serialport** angesprochen um den LEDStrip zum leuchten zu bringen
    
 * **server/routes/index.js:** empfängt Parameter - Längen- und Breitengrade - über die socket.io-Client- und Serververbindung
