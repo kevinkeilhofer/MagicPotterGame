@@ -24,11 +24,11 @@ Verwendete [Pixi.js](https://www.pixijs.com).
 
 **Machine Learning**
 * **KNN Doodle Classifier:**
- * **index.html:**
+* **index.html:**
   * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
   * Verknüpfen mit Tensorflow JS
   * eigenen Doodle-Klassen anpassen können
-  * **sketch.js:**
+* **sketch.js:**
   * Variablen definieren
   * function setup()
   * function addClass(classIndex)
