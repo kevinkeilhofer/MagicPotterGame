@@ -1,7 +1,7 @@
 # MagicPotterGame
 
 MagicPotterGame ist ein spiel welches ...
-Verwendete Quelle war die API Dokumentation von [Pixi.js](https://www.pixijs.com).
+Verwendete [Pixi.js](https://www.pixijs.com).
 
 ![Headline Picture](screenshot1.png)
 
