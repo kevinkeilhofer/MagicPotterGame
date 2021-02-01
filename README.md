@@ -27,7 +27,7 @@ Verwendete [Pixi.js](https://www.pixijs.com).
 * **index.html:**
   * Doodle Classifier (einem Convolutional Neural Network) unter Verwendung von tensorflow.js und tensorflow durchgeführt
   * Verknüpfen mit Tensorflow JS
-  * eigenen Doodle-Klassen anpassen können
+  * eigenen Doodle-Klassen anpassen
 * **sketch.js:**
   * Variablen definieren
   * function setup()
