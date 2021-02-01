@@ -2,7 +2,8 @@
 
 MagicPotterGame ist ein spiel welches ...
 
-![](123.mov)
+[!](https://www.youtube.com/watch?v=ya_6I9IVMzY)
+
 
 ## Aufbau
 
