@@ -1,6 +1,8 @@
 # MagicPotterGame
 
+MagicPotterGame ist ein spiel welches ...
 
+(Video Einbindung)
 
 
 
