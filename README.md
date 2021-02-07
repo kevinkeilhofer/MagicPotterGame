@@ -13,6 +13,10 @@
 
 * **app.js:** Einbindung verschiedener Funktionen, Objekte und Overlays (Beispiel Menü, Fullscreen), Einbindung JSON-Files aus Asset-Ordner
 
+* **Wichtige Funktionen und Objekte:**
+  * PIXI.Application(option) um einen Anzeigebereich aufzuziehen
+  * app.loader um die Sprites zu laden
+  * function startup() um die Anitmation zustarten
 
   
 
