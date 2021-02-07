@@ -1,25 +1,19 @@
 # MagicPotterGame
 
-MagicPotterGame ist ein spiel welches ...
-Verwendete [Pixi.js](https://www.pixijs.com).
-
-![Headline Picture](screenshot1.png)
 
 [![](http://img.youtube.com/vi/ya_6I9IVMzY/0.jpg)](http://www.youtube.com/watch?v=ya_6I9IVMzY "")
 
 
-## Aufbau
+## Full Stack Architektur
 
-**Gamesite**
-* **index.js:** Importierung von React und verschiedener CSS-Datein für die Schrift und Icons
+... bild ....
 
-* **index.html:** HTML-Teil für das das Frontend, greift auf den Container zurück wie die bundle.js
+**Framework Pixi.js**
+* **index.html:** HTML-Teil für das das Frontend, greift auf app.js zurück
 
-* **components/app.js:** Erstellt React-APP
+* **app.js:** Einbindung verschiedener Funktionen, Objekte und Overlays (Beispiel Menü, Fullscreen), Einbindung JSON-Files aus Asset-Ordner
 
-* **components/weather.js:** Diese Komponente verwendet socket.io-client zur Übergabe von Koordinaten auf der Grundlage Ihrer aktuellen geografischen Position, die Koordinaten werden über die Socket-Verbindung an die Serverseite weitergegeben
-  * `displayWeather()`:
-  * `map(val, at_low1, to_high1, at_low2, to_high2)`: Diese Funktion wird in **weather.js** verwendet um die Farbwerte einer Farbtabelle von **npm colormap** zuzuweisen
+
   
 
 **Machine Learning**
