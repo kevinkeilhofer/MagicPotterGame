@@ -6,7 +6,7 @@
 
 ## Full Stack Architektur
 
-... bild ....
+![Bilby Stampede](Full Stack - Architektur.png)
 
 **Framework Pixi.js**
 * **index.html:** HTML-Teil für das das Frontend, greift auf app.js zurück
